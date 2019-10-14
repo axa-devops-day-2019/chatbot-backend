@@ -27,7 +27,25 @@ async function trainRadar() {
     manager.addDocument('en', 'Can I use %technology%', 'technology.use')
     manager.addDocument('en', 'Is %technology% safe to use', 'technology.use')
     manager.addDocument('en', 'Is it okay to use %technology%?', 'technology.use')
+/*
+    const gotClient = got.extend({
+        responseType: 'json',
+        prefixUrl: process.env.RADAR_API_URL,
+        headers: {
+            'Authorization': 'Bearer ' + process.env.RADAR_BEARER_TOKEN
+        }
+    });
 
+    var response = await gotClient.get(process.env.RADAR_API_URL + '/api/entities/5d5188985d0af00006e8c77e/technologies');
+    var jsonData = JSON.parse(response.body);
+
+    jsonData.map(obj => {
+        manager.addNamedEntityText('technology', obj.technology.name, ['en'], [obj.technology.key])
+        answerMap[obj.status].map(answer => {
+            manager.addAnswer('en', 'technology.use', answer, `technology === '${obj.technology.name}'`)
+        })
+    })
+*/    
     // NOTE: Get response from radar API https://radar.paas.axa-asia.com/api/entities/5djjs5188985d0af00006e8c77e/technologies
     const response = require('./radar.json')
     response.map(obj => {
