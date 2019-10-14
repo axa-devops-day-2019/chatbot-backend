@@ -6,7 +6,10 @@ phases:
   build:
     commands:
       - npm install
-      - export BUCKET=axa-devopsday-manila-lab-exercise-pipeline-1-artifacts-<group identifier>
+      - node training/train-card.js  
+      - node training/train-nlp-mod.js
+      - node training/train-radar.js
+      - export BUCKET=axa-devopsday-manila-lab-exercise-pipeline-1-artifacts-03
       - aws cloudformation package --template-file template.yml --s3-bucket $BUCKET --output-template-file outputtemplate.yml
 
 artifacts:
